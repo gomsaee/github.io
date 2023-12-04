@@ -5,6 +5,8 @@ let mainBox = document.querySelector(".main_box");
 let t0;
 let t1;
 
+console.log("test");
+
 const backgroundColorPink = (e) => {
   if (e.target === document.querySelector(".start_button")) {
     title2.innerHTML = "시작";
