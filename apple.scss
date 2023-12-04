@@ -1,0 +1,27 @@
+.box {
+  width: 70%;
+  margin: auto;
+  padding: 30px;
+  height: 200px;
+  margin-top: 50px;
+}
+
+.main_box {
+  background-color: lightgrey;
+  @extend .box;
+}
+.title {
+  font-size: 32px;
+  font-weight: bold;
+}
+.start_button {
+  background-color: orange;
+  width: 100px;
+  margin-top: 10px;
+  border-radius: 5px;
+  padding: 10px;
+}
+.start_box {
+  background-color: lightpink;
+  @extend .box;
+}
