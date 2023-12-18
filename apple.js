@@ -13,7 +13,7 @@ const getRandSec = () => {
 let sec = getRandSec();
 
 const backgroundColorGreen = () => {
-  // t0 = performance.now();
+  t0 = performance.now();
   mainBox.addEventListener("click", testStart);
 };
 
@@ -41,6 +41,7 @@ document
 
 const testReady = () => {
   setTimeout(() => {
+    console.log(t1, t0);
     mainBox.style.backgroundColor = "lightGreen";
     title2.innerHTML = "클릭";
     title3.innerHTML = "클릭해주세요";
