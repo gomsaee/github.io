@@ -33,17 +33,19 @@ document
   .addEventListener("click", backgroundColorPink);
 
 const backgroundColorGreen = () => {
+  t0 = performance.now();
   mainBox.addEventListener("click", testReady);
 };
 
 const testReady = (e) => {
   clickNumber++;
-  t1 = performance.now();
+
   if (clickNumber > 5 && e.currentTarget === mainBox) {
     testResult(e);
     return;
   }
   if (clickNumber > 0 && e.currentTarget === mainBox) {
+    t1 = performance.now();
     mainBox.style.backgroundColor = "lightYellow";
     title2.innerHTML = "준비";
     title3.innerHTML = "배경화면이 초록색이 되면 클릭해주세요.";
@@ -55,7 +57,7 @@ const testStart = () => {
   setTimeout(() => {
     let 결과값 = t1 - t0;
     resultArray.push(결과값);
-    console.log(t1, t0, "<<<<");
+
     mainBox.style.backgroundColor = "lightGreen";
     title2.innerHTML = "클릭";
     title3.innerHTML = "클릭해주세요";
@@ -67,10 +69,17 @@ const testStart = () => {
 };
 
 const testResult = (e) => {
-  let 결과값 = t1 - t0;
+  let sum = 0;
+
+  for (i = 0; i < resultArray.length; i++) {
+    sum += resultArray[i];
+  }
+
+  let result = sum / resultArray.length;
+
   if (e.target === mainBox) {
     title2.innerHTML = "테스트결과";
-    title3.innerHTML = `결과 ${결과값.toFixed(2)} ms`;
+    title3.innerHTML = `결과 ${result.toFixed(2)} ms`;
     mainBox.style.backgroundColor = "white";
     mainBox.removeEventListener("click", testResult);
   }
