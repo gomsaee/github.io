@@ -4,8 +4,13 @@ let title3 = document.querySelector(".title_3");
 let mainBox = document.querySelector(".main_box");
 let t0;
 let t1;
+let resultArray = [];
 
-console.log("test");
+const getRandSec = () => {
+  return Math.floor(Math.random() * 10) + 1;
+}; //랜덤한 숫자를 뽑아주는 함수
+
+let sec = getRandSec();
 
 const backgroundColorPink = (e) => {
   if (e.target === document.querySelector(".start_button")) {
@@ -22,6 +27,40 @@ const backgroundColorPink = (e) => {
   e.stopPropagation();
   backgroundColorGreen();
 };
+
+document
+  .querySelector(".start_button")
+  .addEventListener("click", backgroundColorPink);
+
+const backgroundColorGreen = () => {
+  mainBox.addEventListener("click", testReady);
+};
+
+const testReady = (e) => {
+  clickNumber++;
+  console.log(clickNumber);
+  if (clickNumber === 5 && e.currentTarget === mainBox) {
+    mainBox.addEventListener("click", testResult);
+  }
+  if (clickNumber < 5 && e.currentTarget === mainBox) {
+    mainBox.style.backgroundColor = "lightYellow";
+    title2.innerHTML = "준비";
+    title3.innerHTML = "배경화면이 초록색이 되면 클릭해주세요.";
+    testStart();
+  }
+};
+
+const testStart = () => {
+  setTimeout(() => {
+    resultArray.push();
+    mainBox.style.backgroundColor = "lightGreen";
+    title2.innerHTML = "클릭";
+    title3.innerHTML = "클릭해주세요";
+    t0 = performance.now();
+    mainBox.addEventListener("click", testReady);
+  }, sec * 200);
+};
+
 const testResult = (e) => {
   t1 = performance.now();
   let 결과값 = t1 - t0;
@@ -31,39 +70,4 @@ const testResult = (e) => {
     mainBox.style.backgroundColor = "white";
     mainBox.removeEventListener("click", testResult);
   }
-};
-
-const testReady = (e) => {
-  console.log(clickNumber, "<<<<");
-  clickNumber++;
-  if (clickNumber === 1 && e.currentTarget === mainBox) {
-    mainBox.style.backgroundColor = "lightYellow";
-    title2.innerHTML = "준비";
-    title3.innerHTML = "배경화면이 초록색이 되면 클릭해주세요.";
-    testStart();
-  }
-};
-
-const getRandSec = () => {
-  return Math.floor(Math.random() * 10) + 1;
-}; //랜덤한 숫자를 뽑아주는 함수
-
-let sec = getRandSec();
-
-document
-  .querySelector(".start_button")
-  .addEventListener("click", backgroundColorPink);
-
-const testStart = () => {
-  setTimeout(() => {
-    mainBox.style.backgroundColor = "lightGreen";
-    title2.innerHTML = "클릭";
-    title3.innerHTML = "클릭해주세요";
-    t0 = performance.now();
-    mainBox.addEventListener("click", testResult);
-  }, sec * 1000);
-};
-
-const backgroundColorGreen = () => {
-  mainBox.addEventListener("click", testReady);
 };
