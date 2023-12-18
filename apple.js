@@ -12,6 +12,10 @@ const getRandSec = () => {
 
 let sec = getRandSec();
 
+const backgroundColorGreen = () => {
+  mainBox.addEventListener("click", testReady);
+};
+
 const backgroundColorPink = (e) => {
   if (e.target === document.querySelector(".start_button")) {
     title2.innerHTML = "시작";
@@ -32,20 +36,15 @@ document
   .querySelector(".start_button")
   .addEventListener("click", backgroundColorPink);
 
-const backgroundColorGreen = () => {
-  t0 = performance.now();
-  mainBox.addEventListener("click", testReady);
-};
-
 const testReady = (e) => {
   clickNumber++;
-
+  t1 = performance.now();
+  console.log(t1, t0);
   if (clickNumber > 5 && e.currentTarget === mainBox) {
     testResult(e);
     return;
   }
   if (clickNumber > 0 && e.currentTarget === mainBox) {
-    t1 = performance.now();
     mainBox.style.backgroundColor = "lightYellow";
     title2.innerHTML = "준비";
     title3.innerHTML = "배경화면이 초록색이 되면 클릭해주세요.";
@@ -76,10 +75,10 @@ const testResult = (e) => {
   }
 
   let result = sum / resultArray.length;
-
+  console.log(resultArray);
   if (e.target === mainBox) {
     title2.innerHTML = "테스트결과";
-    title3.innerHTML = `결과 ${result.toFixed(2)} ms`;
+    title3.innerHTML = `다섯번의 평균값은 ${result.toFixed(2)} ms`;
     mainBox.style.backgroundColor = "white";
     mainBox.removeEventListener("click", testResult);
   }
