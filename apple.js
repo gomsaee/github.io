@@ -38,13 +38,14 @@ document
 
 const testReady = (e) => {
   clickNumber++;
-  t1 = performance.now();
+
   console.log(t1, t0);
   if (clickNumber > 5 && e.currentTarget === mainBox) {
     testResult(e);
     return;
   }
   if (clickNumber > 0 && e.currentTarget === mainBox) {
+    t1 = performance.now();
     mainBox.style.backgroundColor = "lightYellow";
     title2.innerHTML = "준비";
     title3.innerHTML = "배경화면이 초록색이 되면 클릭해주세요.";
