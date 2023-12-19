@@ -13,7 +13,6 @@ const getRandSec = () => {
 let sec = getRandSec();
 
 const testReadyToWay = () => {
-  t0 = performance.now();
   mainBox.addEventListener("click", testReady);
 };
 
@@ -53,6 +52,7 @@ const testReady = (e) => {
 };
 
 const timeAttack = () => {
+  console.log(t1, t0, resultArray, "<<<<");
   t1 = performance.now();
   let 결과값 = t1 - t0;
   resultArray.push(결과값);
@@ -63,7 +63,7 @@ const testStart = () => {
     mainBox.style.backgroundColor = "lightGreen";
     title2.innerHTML = "클릭";
     title3.innerHTML = "클릭해주세요";
-
+    t0 = performance.now();
     testReadyToWay();
     mainBox.addEventListener("click", timeAttack);
   }, sec * 200);
@@ -79,9 +79,11 @@ const testResult = (e) => {
   let result = sum / resultArray.length;
 
   if (e.target === mainBox) {
+    console.log(resultArray);
     title2.innerHTML = "테스트결과";
     title3.innerHTML = `다섯번의 평균값은 ${result.toFixed(2)} ms`;
     mainBox.style.backgroundColor = "white";
     mainBox.removeEventListener("click", testResult);
+    mainBox.removeEventListener("click", timeAttack);
   }
 };
