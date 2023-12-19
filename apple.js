@@ -4,6 +4,7 @@ let title3 = document.querySelector(".title_3");
 let mainBox = document.querySelector(".main_box");
 let t0;
 let t1;
+let falseOrTrue = false;
 let resultArray = [];
 
 const getRandSec = () => {
@@ -40,7 +41,6 @@ const testReady = (e) => {
   clickNumber++;
 
   if (clickNumber > 5 && e.currentTarget === mainBox) {
-    timeAttack();
     testResult(e);
     return;
   }
@@ -49,6 +49,8 @@ const testReady = (e) => {
     title2.innerHTML = "준비";
     title3.innerHTML = "배경화면이 초록색이 되면 클릭해주세요.";
     testStart();
+
+    mainBox.addEventListener("click");
   }
 };
 
@@ -60,6 +62,7 @@ const timeAttack = () => {
 
 const testStart = () => {
   setTimeout(() => {
+    falseOrTrue = true;
     mainBox.style.backgroundColor = "lightGreen";
     title2.innerHTML = "클릭";
     title3.innerHTML = "클릭해주세요";
