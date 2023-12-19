@@ -12,7 +12,8 @@ const getRandSec = () => {
 
 let sec = getRandSec();
 
-const backgroundColorGreen = () => {
+const testReadyToWay = () => {
+  t0 = performance.now();
   mainBox.addEventListener("click", testReady);
 };
 
@@ -29,7 +30,7 @@ const backgroundColorPink = (e) => {
     mainBox.style.backgroundColor = "lightPink";
   }
   e.stopPropagation();
-  backgroundColorGreen();
+  testReadyToWay();
 };
 
 document
@@ -39,18 +40,22 @@ document
 const testReady = (e) => {
   clickNumber++;
 
-  console.log(t1, t0);
   if (clickNumber > 5 && e.currentTarget === mainBox) {
     testResult(e);
     return;
   }
   if (clickNumber > 0 && e.currentTarget === mainBox) {
-    t1 = performance.now();
     mainBox.style.backgroundColor = "lightYellow";
     title2.innerHTML = "준비";
     title3.innerHTML = "배경화면이 초록색이 되면 클릭해주세요.";
     testStart();
   }
+};
+
+const timeAttack = () => {
+  t1 = performance.now();
+  let 결과값 = t1 - t0;
+  resultArray.push(결과값);
 };
 
 const testStart = () => {
@@ -62,9 +67,8 @@ const testStart = () => {
     title2.innerHTML = "클릭";
     title3.innerHTML = "클릭해주세요";
 
-    t0 = performance.now();
-
-    mainBox.addEventListener("click", testReady);
+    testReadyToWay();
+    mainBox.addEventListener("click", timeAttack);
   }, sec * 200);
 };
 
