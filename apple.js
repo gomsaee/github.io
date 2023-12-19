@@ -45,7 +45,6 @@ const testReady = (e) => {
     return;
   }
   if (clickNumber > 0 && e.currentTarget === mainBox) {
-    // t1 = performance.now();
     mainBox.style.backgroundColor = "lightYellow";
     title2.innerHTML = "준비";
     title3.innerHTML = "배경화면이 초록색이 되면 클릭해주세요.";
@@ -57,8 +56,8 @@ const timeAttack = () => {
   t1 = performance.now();
   let 결과값 = t1 - t0;
   resultArray.push(결과값);
-  console.log(t1, t0);
 };
+
 const testStart = () => {
   setTimeout(() => {
     mainBox.style.backgroundColor = "lightGreen";
@@ -79,6 +78,7 @@ const testResult = (e) => {
 
   let result = sum / resultArray.length;
   console.log(resultArray);
+
   if (e.target === mainBox) {
     title2.innerHTML = "테스트결과";
     title3.innerHTML = `다섯번의 평균값은 ${result.toFixed(2)} ms`;
