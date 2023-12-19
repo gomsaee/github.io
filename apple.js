@@ -40,6 +40,7 @@ const testReady = (e) => {
   clickNumber++;
 
   if (clickNumber > 5 && e.currentTarget === mainBox) {
+    timeAttack();
     testResult(e);
     return;
   }
@@ -52,7 +53,6 @@ const testReady = (e) => {
 };
 
 const timeAttack = () => {
-  console.log(t1, t0, resultArray, "<<<<");
   t1 = performance.now();
   let 결과값 = t1 - t0;
   resultArray.push(결과값);
