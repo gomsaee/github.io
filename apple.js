@@ -60,9 +60,6 @@ const timeAttack = () => {
 
 const testStart = () => {
   setTimeout(() => {
-    let 결과값 = t1 - t0;
-    resultArray.push(결과값);
-
     mainBox.style.backgroundColor = "lightGreen";
     title2.innerHTML = "클릭";
     title3.innerHTML = "클릭해주세요";
@@ -80,7 +77,7 @@ const testResult = (e) => {
   }
 
   let result = sum / resultArray.length;
-  console.log(resultArray);
+
   if (e.target === mainBox) {
     title2.innerHTML = "테스트결과";
     title3.innerHTML = `다섯번의 평균값은 ${result.toFixed(2)} ms`;
