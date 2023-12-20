@@ -6,6 +6,7 @@ let t0;
 let t1;
 let falseOrTrue = false;
 let resultArray = [];
+let setTimeoutTest;
 
 const getRandSec = () => {
   return Math.floor(Math.random() * 10) + 1;
@@ -37,8 +38,20 @@ document
   .querySelector(".start_button")
   .addEventListener("click", backgroundColorPink);
 
+const testStart = () => {
+  falseOrTrue = true;
+  mainBox.style.backgroundColor = "lightGreen";
+  title2.innerHTML = "클릭";
+  title3.innerHTML = "클릭해주세요";
+  t0 = performance.now();
+  testReadyToWay();
+  mainBox.addEventListener("click", timeAttack);
+  mainBox.removeEventListener("click", isFailClick);
+};
+
 const testReady = (e) => {
   clickNumber++;
+  clearTimeout(setTimeoutTest);
 
   if (clickNumber > 5 && e.currentTarget === mainBox) {
     testResult(e);
@@ -48,28 +61,26 @@ const testReady = (e) => {
     mainBox.style.backgroundColor = "lightYellow";
     title2.innerHTML = "준비";
     title3.innerHTML = "배경화면이 초록색이 되면 클릭해주세요.";
-    testStart();
 
-    mainBox.addEventListener("click");
+    setTimeoutTest = setTimeout(testStart, sec * 200);
+
+    mainBox.addEventListener("click", isFailClick);
   }
 };
 
+const isFailClick = () => {
+  console.log(setTimeoutTest, "지우기 전");
+  clearTimeout(setTimeoutTest);
+  console.log(setTimeoutTest, "지운 후");
+  mainBox.style.backgroundColor = "darkGray";
+  title2.innerHTML = "준비 화면에서는 클릭이 불가합니다.";
+  title3.innerHTML =
+    "준비 화면에서는 클릭이 불가합니다.화면이 초록색으로 바뀌면 클릭 해 주시길 바랍니다. 처음부터 시작하려면 화면을 클릭해주세요.";
+};
 const timeAttack = () => {
   t1 = performance.now();
   let 결과값 = t1 - t0;
   resultArray.push(결과값);
-};
-
-const testStart = () => {
-  setTimeout(() => {
-    falseOrTrue = true;
-    mainBox.style.backgroundColor = "lightGreen";
-    title2.innerHTML = "클릭";
-    title3.innerHTML = "클릭해주세요";
-    t0 = performance.now();
-    testReadyToWay();
-    mainBox.addEventListener("click", timeAttack);
-  }, sec * 200);
 };
 
 const testResult = (e) => {
