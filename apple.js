@@ -18,21 +18,21 @@ const testReadyToWay = () => {
   mainBox.addEventListener("click", testReady);
 };
 
-const backgroundColorPink = (e) => {
-  if (e.currentTarget === mainBox) {
-    console.log("핑크", clickNumber);
-    title2.innerHTML = "시작";
-    title2.style.textAlign = "center";
-    title2.style.fontSize = "30px";
-    title3.innerHTML =
-      "총 기회는 5번 주어집니다. 다음준비화면애서 배경화면이 초록색이 되었을 때 클릭하시면 됩니다. 시작하시려면 현재화면을 클릭해주세요.";
-    title3.style.textAlign = "center";
-    document.querySelector(".title").style.display = "none";
-    document.querySelector(".start_button").style.display = "none";
-    mainBox.style.backgroundColor = "lightPink";
-    testReadyToWay();
-  }
-};
+// const backgroundColorPink = (e) => {
+//   if (e.target === document.querySelector(".start_button")) {
+//     console.log("핑크", clickNumber);
+//     title2.innerHTML = "시작";
+//     title2.style.textAlign = "center";
+//     title2.style.fontSize = "30px";
+//     title3.innerHTML =
+//       "총 기회는 5번 주어집니다. 다음준비화면애서 배경화면이 초록색이 되었을 때 클릭하시면 됩니다. 시작하시려면 현재화면을 클릭해주세요.";
+//     title3.style.textAlign = "center";
+//     document.querySelector(".title").style.display = "none";
+//     document.querySelector(".start_button").style.display = "none";
+//     mainBox.style.backgroundColor = "lightPink";
+//     testReadyToWay();
+//   }
+// };
 
 document
   .querySelector(".start_button")
